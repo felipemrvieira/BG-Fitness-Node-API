@@ -1,10 +1,9 @@
+import unitsRouter from '@modules/units/routes/UnitsRoutes';
 import { Router } from 'express';
 import { resourceLimits } from 'worker_threads';
 
 const routes = Router();
 
-routes.get('/', (request, response) => {
-  return response.json({ message: 'Hello World' });
-});
+routes.use('/units', unitsRouter);
 
 export default routes;
