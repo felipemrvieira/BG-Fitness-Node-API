@@ -1,10 +1,6 @@
 import { Request, Response } from 'express';
 import CreateSessionService from '../services/CreateSessionService';
-import CreateUserService from '../services/CreateUserService';
 import DeleteUserService from '../services/DeleteUserService';
-import ListUserService from '../services/ListUserService';
-import ShowUserService from '../services/ShowUserService';
-import UpdateUserService from '../services/UpdateUserService';
 
 export default class SessionsController {
   public async create(request: Request, response: Response): Promise<Response> {
