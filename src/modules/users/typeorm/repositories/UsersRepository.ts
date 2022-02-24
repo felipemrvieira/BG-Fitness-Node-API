@@ -10,4 +10,7 @@ export class UserRepository extends Repository<User> {
   public async findByEmail(email: string): Promise<User | undefined> {
     return this.findOne({ email });
   }
+  public async findById(id: string): Promise<User | undefined> {
+    return this.findOne({ id });
+  }
 }

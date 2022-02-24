@@ -3,10 +3,16 @@ import UsersController from '../controllers/UsersController';
 import { celebrate, Joi, Segments } from 'celebrate';
 import SessionsController from '../controllers/SessionsController';
 import isAuthenticated from '../../../shared/http/middlewares/isAuthenticated';
+import multer from 'multer';
+import uploadConfig from '@config/upload';
+import UsersAvatarController from '../controllers/UsersAvatarController';
 
 const userRouter = Router();
 const userController = new UsersController();
 const sessionsController = new SessionsController();
+const usersAvatarController = new UsersAvatarController();
+
+const upload = multer(uploadConfig);
 
 userRouter.get('/', isAuthenticated, userController.index);
 userRouter.get(
@@ -43,6 +49,14 @@ userRouter.put(
   }),
   userController.update,
 );
+
+userRouter.patch(
+  '/avatar',
+  isAuthenticated,
+  upload.single('avatar'),
+  usersAvatarController.update,
+);
+
 userRouter.delete(
   '/:id',
   celebrate({
